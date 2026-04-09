@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dopamine Download</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f7;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1c1c1e; }
+        p { color: #8e8e93; margin-bottom: 30px; }
+        .download-btn {
+            background-color: #007aff;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .download-btn:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dopamine Certificate</h1>
+        <p>დააჭირეთ ღილაკს საიტის დასამატებლად</p>
+        <button class="download-btn" onclick="downloadProfile()">Download Profile</button>
+    </div>
+
+    <script>
+        function downloadProfile() {
+            // აქ არის პროფილის XML კოდი
+            const profileXML = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>FullScreen</key>
+            <true/>
+            <key>IsRemovable</key>
+            <true/>
+            <key>Label</key>
+            <string>Dopamine</string>
+            <key>PayloadDescription</key>
+            <string>Dcraft Web Clip</string>
+            <key>PayloadDisplayName</key>
+            <string>Dopamine</string>
+            <key>PayloadIdentifier</key>
+            <string>com.dcraft.webclip</string>
+            <key>PayloadType</key>
+            <string>com.apple.webClip.managed</string>
+            <key>PayloadUUID</key>
+            <string>A1B2C3D4-E5F6-4G7H-8I9J-K0L1M2N3O4P5</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>URL</key>
+            <string>https://dcraft.lovable.app</string>
+            <key>Icon</key>
+            <data>
+            </data>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Dopamine Certificate</string>
+    <key>PayloadIdentifier</key>
+    <string>com.dcraft.profile</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>Z9Y8X7W6-V5U4-4T3S-2R1Q-P0O9N8M7L6K5</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>`;
+
+            const blob = new Blob([profileXML], { type: 'application/x-apple-aspen-config' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'dopamine.mobileconfig';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
